@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sign up</title>
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/circular-std/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<!-- ============================================================== -->
+<!-- signup form  -->
+<!-- ============================================================== -->
+
+<body>
+    <!-- ============================================================== -->
+    <!-- signup form  -->
+    <!-- ============================================================== -->
+    <form class="splash-container" action="." method="post">{% csrf_token %}
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-1">Sign Up</h3>
+                <p>Please enter your user information.</p>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="Account" class="col-form-label">Input account</label>
+                    <input class="form-control form-control-lg" type="text" name="account" required="True"
+                        placeholder="Account" autocomplete="off">
+                    <p>Account is your identifier.</p>
+                </div>
+                <div class="form-group">
+                    <label for="Name">Input name</label>
+                    <input class="form-control form-control-lg" type="text" name="name" required="True"
+                        placeholder="Name" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input class="form-control form-control-lg" id="pass1" name="password" type="password"
+                        required="True" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="PasswordAgainValid">Password again</label>
+                    <input class="form-control form-control-lg" id="pass2" name="password_again" type="password"
+                        required="True" placeholder="Password Again" onkeyup="checkPassword(this)">
+                    <div class="valid-feedback" id="valid-text" hidden>
+                        They matches!
+                    </div>
+                    <div class="invalid-feedback" id="invalid-text" hidden>
+                        They cannot match!
+                    </div>
+                </div>
+                <div class="form-group pt-2">
+                    <button class="btn btn-block btn-primary" type="submit">Register My Account</button>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <p>Already member? <a href="../login" class="text-secondary">Login Here.</a></p>
+            </div>
+        </div>
+    </form>
+    <script>
+        function checkPassword(x) {
+            pass1 = document.getElementById('pass1');
+            pass2 = document.getElementById('pass2');
+            vtext = document.getElementById('valid-text');
+            itext = document.getElementById('invalid-text');
+            if (pass1.value != pass2.value) {
+                if (x.classList.contains('is-valid')) {
+                    x.classList.remove('is-valid');
+                    x.classList.add('is-invalid');
+                }
+                else if (x.classList.contains('is-invalid')) {
+                    return;
+                }
+                else {
+                    x.classList.add('is-invalid');
+                }
+                if (vtext.hidden == false) {
+                    vtext.setAttribute('hidden', true);
+                }
+                if (itext.hidden == true) {
+                    itext.removeAttribute('hidden');
+                }
+            }
+            else {
+                if (x.classList.contains('is-invalid')) {
+                    x.classList.remove('is-invalid');
+                    x.classList.add('is-valid');
+                }
+                else if (x.classList.contains('is-valid')) {
+                    return;
+                }
+                else {
+                    x.classList.add('is-valid');
+                }
+                if (itext.hidden == false) {
+                    itext.setAttribute('hidden', true);
+                }
+                if (vtext.hidden == true) {
+                    vtext.removeAttribute('hidden');
+                }
+            }
+        }
+    </script>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>alert("{{ message }}")</script> {% endif %}
+    {% endfor %}
+    {% endif %}
+</body>
+
+
+</html>

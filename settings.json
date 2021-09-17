@@ -1,0 +1,10 @@
+{
+    "host_name":"",
+    "database":{
+        "NAME": "",
+        "USER": "root",
+        "PASSWORD": "",
+        "HOST": "localhost",
+        "PORT": "3306"
+    }
+}

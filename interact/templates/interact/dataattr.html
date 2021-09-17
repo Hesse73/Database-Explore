@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Data Attributes</title>
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/circular-std/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/charts/morris-bundle/morris.css' %}">
+    <script src="{% static 'assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/libs/js/main-js.js' %}"></script>
+    <script src="{% static 'assets/vendor/charts/morris-bundle/raphael.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/charts/morris-bundle/morris.js' %}"></script>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="../">DATAEXP</a>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="../">Back to Home</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-0" aria-controls="submenu-0"><i
+                                        class="fa fa-fw fa-user-circle"></i>Explore <span
+                                        class="badge badge-success">6</span></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-1" aria-controls="submenu-1"><i
+                                        class="fa fa-fw fa-user-circle"></i>Results <span
+                                        class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../dashboard-finance.html">Data Map</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../dashboard-finance.html">Simulated Query</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../dashboard-finance.html">Rate models</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="index.html" data-toggle="collapse"
+                                                aria-expanded="false" data-target="#submenu-1-2"
+                                                aria-controls="submenu-1-2">Pool Dataset</a>
+                                            <div id="submenu-1-2" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="../index.html">Reservoir Pool</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="../ecommerce-product.html">Random
+                                                            Pool</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Select Data Attributes</h2>
+                            <h4>(Just use those switches!)</h4>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="../" class="breadcrumb-link">Explore</a></li>
+                                        <li class="breadcrumb-item"><a href="../dataset"
+                                                class="breadcrumb-link">Dataset</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Data Attributes</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    {% for attr,content in attr_contents.items %}
+                    <div class="col-xl-{{content.bootstrap_size}} col-lg-{{content.bootstrap_size}} col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex">
+                                <h4 class="card-header-title">{{attr}}</h4>
+                                <div class="toolbar ml-auto">
+                                    <div class="switch-button switch-button-yesno">
+                                        <input type="checkbox" checked="" name="{{attr}}" id="{{attr}}">
+                                        <span><label for="{{attr}}"></label></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="{{content.element_id}}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="post_selected()">Explore !</button>
+            </div>
+        </div>
+    </div>
+    {% for content in attr_contents.values %}
+    <script>{{content.js | safe}}</script>
+    {% endfor %}
+    {% csrf_token %}
+    <script>
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    </script>
+    <script>
+    function post_selected(){
+        const request = new Request(
+            '../models/',
+            {headers: {'X-CSRFToken': csrftoken}}
+        );
+        var formData = new FormData(); // Currently empty
+        {% for attr in attr_contents.keys %}
+        if(document.getElementById('{{attr}}').checked){
+            formData.append('interest','{{attr}}');
+        }
+        {% endfor %}
+        fetch(request, {
+            method: 'POST',
+            mode: 'same-origin',  // Do not send CSRF token to another domain.
+            body: formData,
+        }).then(function(response) {
+            window.location = '../models';
+        });
+            
+        }
+    </script>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>alert("{{ message }}")</script> {% endif %}
+    {% endfor %}
+    {% endif %}
+</body>
+
+</html>
